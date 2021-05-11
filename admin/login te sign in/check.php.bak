@@ -1,0 +1,20 @@
+<?php 
+session_start();
+$n=$_REQUEST['name'];
+$p=$_REQUEST['password'];
+$con=mysqli_connect("localhost","root","","musical");
+$sel="select * from admin where username=('$n')&&password=('$p')";
+$run=mysqli_query($con,$sel);
+if($row=mysqli_fetch_array($run))
+{
+   $_SESSION['name']=$n;
+   header ("location:index.php");
+}
+   else
+	{
+  
+
+header("location:login.php");
+
+	} 
+mysqli_close($con);
